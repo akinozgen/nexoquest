@@ -31,11 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
+Route::middleware('auth.admin')->group(function () {
     Route::resource('roms', RomsController::class);
     Route::resource('emulators', EmulatorsController::class);
     Route::resource('platforms', PlatformsController::class);
-
 });
 
 Route::resource('roms', RomsController::class)->only([

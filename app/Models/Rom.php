@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -44,4 +46,24 @@ class Rom extends Model
         'video_trailer',
         'official_website',
     ];
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(RomImage::class);
+    }
+
+    public function emulator(): BelongsTo
+    {
+        return $this->belongsTo(Emulator::class);
+    }
+
+    public function platform(): BelongsTo
+    {
+        return $this->belongsTo(Platform::class);
+    }
+
+    public function getCoverImage()
+    {
+        return $this->images()->first()->image_thumbnail_url;
+    }
 }

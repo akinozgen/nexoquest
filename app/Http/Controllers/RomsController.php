@@ -15,7 +15,8 @@ class RomsController extends Controller
      */
     public function index()
     {
-        //
+        $roms = Rom::query()->with('images')->with('emulator')->with('platform')->get();
+        return view('roms.index', compact('roms'));
     }
 
     /**
