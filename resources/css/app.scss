@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+// create a loop for mr-1 to mr-10
+@for $i from 1 through 10 {
+    .mr-#{$i} {
+        margin-right: #{$i * 0.25}rem;
+    }
+}
+
+.margin-none {
+    margin: 0 !important;
+}
+
+.padding-none {
+    padding: 0 !important;
+}
