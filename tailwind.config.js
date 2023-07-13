@@ -1,6 +1,8 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
+const dracula = require('tailwind-dracula/colors');
+
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
@@ -14,8 +16,12 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            textColor: (theme) => ({
+                'primary': theme('colors.white'),
+                'primary-dark': theme('colors.gray.900'),
+            }),
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, require('tailwind-dracula')],
 };

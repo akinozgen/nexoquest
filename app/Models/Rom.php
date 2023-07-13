@@ -66,4 +66,9 @@ class Rom extends Model
     {
         return $this->images()->first()->image_thumbnail_url;
     }
+
+    public function getNameAttribute($value)
+    {
+        return ucwords($value);
+    }
 }

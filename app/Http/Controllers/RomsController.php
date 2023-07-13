@@ -93,7 +93,13 @@ class RomsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $rom = Rom::query()->with('images')->with('emulator')->with('platform')->where('slug', $id)->get()->first();
+
+        if (!$rom) {
+            abort(404);
+        }
+
+        return view('roms.show', compact('rom'));
     }
 
     /**
